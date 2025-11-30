@@ -1,15 +1,16 @@
 #!/bin/bash
+
 export ARCH=arm64
 export RDIR="$(pwd)"
 export KBUILD_BUILD_USER="n4hom"
 export KBUILD_BUILD_HOST="github"
 
 #init ksu
-git submodule init && git submodule update --remote --rebase
+git submodule update --init --remote --merge
 
 #export toolchain paths
-export BUILD_CROSS_COMPILE=${RDIR}/toolchain/toolchains-gcc-10.3.0/bin/aarch64-buildroot-linux-gnu-
-export BUILD_CC=${RDIR}/toolchain/clang/host/linux-x86/clang-r383902/bin/clang
+export BUILD_CROSS_COMPILE=${RDIR}/toolchain/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+export BUILD_CC=${RDIR}/toolchain/clang-r383902/bin/clang
 
 #output dir
 if [ ! -d "${RDIR}/out" ]; then
@@ -40,7 +41,6 @@ CONFIG_SECTION_MISMATCH_WARN_ONLY=y \
 build_kernel(){
     make ${ARGS} clean && make ${ARGS} mrproper
     make ${ARGS} a04e_defconfig custom.config
-    make ${ARGS} menuconfig
     make ${ARGS} || exit 1
     cp out/arch/arm64/boot/Image.gz $(pwd)/arch/arm64/boot/Image.gz
 }
