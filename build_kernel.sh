@@ -10,7 +10,7 @@ git submodule update --init --remote --merge
 
 #export toolchain paths
 export BUILD_CROSS_COMPILE=${RDIR}/toolchain/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
-export BUILD_CC=${RDIR}/toolchain/clang-r383902/bin/clang
+export BUILD_CC=${RDIR}/toolchain/clang/host/linux-x86/clang-r383902/bin/clang
 
 #output dir
 if [ ! -d "${RDIR}/out" ]; then
