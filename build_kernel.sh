@@ -5,7 +5,7 @@ export KBUILD_BUILD_USER="n4hom"
 export KBUILD_BUILD_HOST="github"
 
 #init ksu
-git submodule init && git submodule update
+git submodule init && git submodule update --remote --rebase
 
 #export toolchain paths
 export BUILD_CROSS_COMPILE=${RDIR}/toolchain/toolchains-gcc-10.3.0/bin/aarch64-buildroot-linux-gnu-
